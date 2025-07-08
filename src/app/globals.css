@@ -27,3 +27,44 @@ body {
   color: var(--foreground);
   font-family: var(--font-open-sans), sans-serif;
 }
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-montserrat), sans-serif;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--secondary);
+    }
+  }
+}
+
+@layer components {
+  .custom-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+}

@@ -1,6 +1,6 @@
 const ProjectsSection = () => {
   return (
-    <div className="projects-section">
+    <div className="custom-container">
       <h2>Selected Projects</h2>
 
       <div className="project">

@@ -1,6 +1,6 @@
 const ContactSection = () => {
   return (
-    <div className="contact-section">
+    <div className="custom-container">
       <h2>Contact Me</h2>
       <p>
         Have an idea or need help building your next product? I'd love to
