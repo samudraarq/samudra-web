@@ -1,3 +1,5 @@
+import { Mail, Github, Youtube, Linkedin } from "lucide-react";
+
 const ContactSection = () => {
   return (
     <div className="custom-container pt-24 pb-24">
@@ -8,37 +10,41 @@ const ContactSection = () => {
         already have.
       </p>
 
-      <div className="space-y-2">
-        <div className="flex items-center gap-3">
-          <span>📧</span>
-          <a href="mailto:samudrafaris@gmail.com" className="hover:underline">
-            samudrafaris@gmail.com
-          </a>
-        </div>
-        <div className="flex items-center gap-3">
-          <span>💼</span>
-          <a href="https://github.com/samudrafaris" className="hover:underline">
-            GitHub
-          </a>
-        </div>
-        <div className="flex items-center gap-3">
-          <span>💼</span>
-          <a
-            href="https://youtube.com/@samudrafaris?si=_zRCjjBaiv9nHU2k"
-            className="hover:underline"
-          >
-            YouTube
-          </a>
-        </div>
-        <div className="flex items-center gap-3">
-          <span>💼</span>
-          <a
-            href="https://www.linkedin.com/in/samudra-faris-arqam/"
-            className="hover:underline"
-          >
-            LinkedIn
-          </a>
-        </div>
+      <div className="flex gap-4">
+        <a
+          href="mailto:samudrafaris@gmail.com"
+          className="p-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          title="Email"
+        >
+          <Mail size={24} />
+        </a>
+        <a
+          href="https://github.com/samudrafaris"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          title="GitHub"
+        >
+          <Github size={24} />
+        </a>
+        <a
+          href="https://youtube.com/@samudrafaris?si=_zRCjjBaiv9nHU2k"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          title="YouTube"
+        >
+          <Youtube size={24} />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/samudra-faris-arqam/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          title="LinkedIn"
+        >
+          <Linkedin size={24} />
+        </a>
       </div>
     </div>
   );
