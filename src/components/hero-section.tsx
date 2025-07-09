@@ -1,7 +1,7 @@
 const HeroSection = () => {
   return (
-    <div className="custom-container">
-      <div className="my-48">
+    <div className="custom-container py-32">
+      <div>
         <h1>Samudra Faris Arqam</h1>
         <h2 className="mt-2">Frontend Developer</h2>
         <p className="mt-4">
