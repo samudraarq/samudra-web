@@ -3,7 +3,7 @@ const AboutSection = () => {
     <div className="custom-container pt-24">
       <h2>About Me</h2>
       <p className="mt-4">
-        I'm a frontend developer with over 4 years of experience turning ideas
+        I&apos;m a frontend developer with over 4 years of experience turning ideas
         into intuitive digital products. I specialize in building applications
         using React, Next.js, and React Native—with a focus on performance,
         simplicity, and great user experience.

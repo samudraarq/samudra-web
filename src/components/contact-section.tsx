@@ -5,9 +5,9 @@ const ContactSection = () => {
     <div className="custom-container pt-24 pb-24">
       <h2>Contact Me</h2>
       <p className="mt-4 mb-8">
-        Have an idea or need help building your next product? I'd love to
-        collaborate—whether it's launching something new or improving what you
-        already have.
+        Have an idea or need help building your next product? I&apos;d love to
+        collaborate—whether it&apos;s launching something new or improving what
+        you already have.
       </p>
 
       <div className="flex gap-4">
