@@ -1,4 +1,5 @@
-import { Mail, Github, Youtube, Linkedin } from "lucide-react";
+import { Mail } from "lucide-react";
+import Image from "next/image";
 
 const ContactSection = () => {
   return (
@@ -13,37 +14,70 @@ const ContactSection = () => {
       <div className="flex gap-4">
         <a
           href="mailto:samudrafaris@gmail.com"
-          className="p-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          className="p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center"
           title="Email"
         >
-          <Mail size={24} />
+          <Mail size={24} color="black" />
         </a>
         <a
           href="https://github.com/samudrafaris"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          className="p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center"
           title="GitHub"
         >
-          <Github size={24} />
+          <Image
+            src="/icons/github-mark.svg"
+            alt="GitHub"
+            width={24}
+            height={24}
+            className="object-contain"
+          />
         </a>
         <a
           href="https://youtube.com/@samudrafaris?si=_zRCjjBaiv9nHU2k"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          className="p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center"
           title="YouTube"
         >
-          <Youtube size={24} />
+          <Image
+            src="/icons/youtube_social_icon_dark.png"
+            alt="YouTube"
+            width={24}
+            height={24}
+            className="object-contain"
+          />
         </a>
         <a
           href="https://www.linkedin.com/in/samudra-faris-arqam/"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          className="p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center"
           title="LinkedIn"
         >
-          <Linkedin size={24} />
+          <Image
+            src="/icons/InBug-Black.png"
+            alt="LinkedIn"
+            width={24}
+            height={24}
+            className="object-contain"
+          />
+        </a>
+        <a
+          href="https://www.instagram.com/samudra_arq/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center"
+          title="Instagram"
+        >
+          <Image
+            src="/icons/Instagram_Glyph_Black.svg"
+            alt="Instagram"
+            width={24}
+            height={24}
+            className="object-contain"
+          />
         </a>
       </div>
     </div>
