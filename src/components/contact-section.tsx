@@ -30,7 +30,7 @@ const ContactSection = () => {
           href="https://youtube.com/@samudrafaris?si=_zRCjjBaiv9nHU2k"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center"
+          className="p-3 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors flex items-center justify-center"
           title="YouTube"
         >
           <Image
@@ -45,7 +45,7 @@ const ContactSection = () => {
           href="https://www.linkedin.com/in/samudra-faris-arqam/"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center"
+          className="p-3 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors flex items-center justify-center"
           title="LinkedIn"
         >
           <Image
@@ -60,7 +60,7 @@ const ContactSection = () => {
           href="https://www.instagram.com/samudra_arq/"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center"
+          className="p-3 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors flex items-center justify-center"
           title="Instagram"
         >
           <Image

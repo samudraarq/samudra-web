@@ -21,16 +21,16 @@ const ProjectsSection = () => {
             Supabase, OpenAI API, and Tailwind CSS.
           </p>
           <div className="flex flex-wrap gap-2">
-            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-sm rounded">
+            <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-sm rounded">
               Next.js
             </span>
-            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-sm rounded">
+            <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-sm rounded">
               Supabase
             </span>
-            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-sm rounded">
+            <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-sm rounded">
               OpenAI API
             </span>
-            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-sm rounded">
+            <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-sm rounded">
               Tailwind CSS
             </span>
           </div>
@@ -53,10 +53,10 @@ const ProjectsSection = () => {
             English learning online. Built with Next.js and Tailwind CSS.
           </p>
           <div className="flex flex-wrap gap-2">
-            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-sm rounded">
+            <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-sm rounded">
               Next.js
             </span>
-            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-sm rounded">
+            <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-sm rounded">
               Tailwind CSS
             </span>
           </div>
@@ -79,10 +79,10 @@ const ProjectsSection = () => {
             and accessible user experience.
           </p>
           <div className="flex flex-wrap gap-2">
-            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-sm rounded">
+            <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-sm rounded">
               React.js
             </span>
-            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-sm rounded">
+            <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-sm rounded">
               Tailwind CSS
             </span>
           </div>
