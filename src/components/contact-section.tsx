@@ -3,7 +3,7 @@ import Image from "next/image";
 const ContactSection = () => {
   return (
     <div className="custom-container pt-24 pb-24">
-      <h2>Contact Me</h2>
+      <h2>Say Hello</h2>
       <p className="mt-4 mb-8">
         Have an idea or need help building your next product? I&apos;d love to
         collaborate—whether it&apos;s launching something new or improving what
@@ -15,7 +15,7 @@ const ContactSection = () => {
           href="https://github.com/samudraarq"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center"
+          className="p-3 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors flex items-center justify-center"
           title="GitHub"
         >
           <Image
