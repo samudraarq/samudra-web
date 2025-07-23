@@ -4,7 +4,7 @@ import { projects } from "@/data/projects";
 const ProjectsSection = () => {
   return (
     <div className="custom-container pt-24">
-      <h2>Selected Projects</h2>
+      <h2>Projects</h2>
 
       <div className="space-y-16 mt-8">
         {projects.map((project) => (
