@@ -1,4 +1,4 @@
-import { OrbitControls } from "@react-three/drei";
+import { Center, Environment, OrbitControls } from "@react-three/drei";
 import { Physics, RigidBody } from "@react-three/rapier";
 import { Suspense } from "react";
 import { useControls } from "leva";
@@ -11,28 +11,23 @@ const Experience = () => {
 
   return (
     <>
-      <color attach="background" args={["#87ceeb"]} />
+      <color attach="background" args={["#ffffff"]} />
+      <Environment preset="sunset" />
 
       <OrbitControls />
 
-      <ambientLight intensity={3} />
-      <directionalLight position={[5, 5, 5]} intensity={7} />
-
-      <Suspense fallback={<div>Loading assets...</div>}>
+      <Suspense fallback={null}>
         <Physics debug={debug}>
-          <RigidBody
-            colliders="ball"
-            position={[0, 0, 0]}
-            restitution={0}
-            scale={0.2}
-          >
-            <mesh>
-              <sphereGeometry />
-              <meshBasicMaterial color="white" />
-            </mesh>
-          </RigidBody>
+          <Center>
+            <RigidBody colliders="ball" restitution={0} scale={0.2}>
+              <mesh>
+                <sphereGeometry />
+                <meshBasicMaterial color="white" />
+              </mesh>
+            </RigidBody>
 
-          <SnowGlobe />
+            <SnowGlobe />
+          </Center>
         </Physics>
       </Suspense>
     </>
