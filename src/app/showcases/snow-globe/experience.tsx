@@ -1,12 +1,13 @@
 import { Center, Environment, OrbitControls } from "@react-three/drei";
-import { Physics, RigidBody } from "@react-three/rapier";
+import { Physics } from "@react-three/rapier";
 import { Suspense } from "react";
 import { useControls } from "leva";
 import SnowGlobe from "./snow-globe";
+import Snows from "./snows";
 
 const Experience = () => {
   const { debug } = useControls("Snow Globe", {
-    debug: true,
+    debug: false,
   });
 
   return (
@@ -17,20 +18,9 @@ const Experience = () => {
       <OrbitControls />
 
       <Suspense fallback={null}>
-        <Physics debug={debug}>
+        <Physics debug={debug} gravity={[0, -0.3, 0]}>
+          <Snows />
           <Center>
-            <RigidBody
-              colliders="ball"
-              restitution={0}
-              scale={0.2}
-              position={[0, 2, 0]}
-            >
-              <mesh>
-                <sphereGeometry />
-                <meshBasicMaterial color="white" />
-              </mesh>
-            </RigidBody>
-
             <SnowGlobe />
           </Center>
         </Physics>
