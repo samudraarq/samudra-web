@@ -1,14 +1,13 @@
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { Physics, RigidBody } from "@react-three/rapier";
 import { Suspense } from "react";
 import { useControls } from "leva";
-import * as THREE from "three";
+import SnowGlobe from "./snow-globe";
 
 const Experience = () => {
   const { debug } = useControls("Snow Globe", {
     debug: true,
   });
-  const model = useGLTF("/models/snow-globe.glb");
 
   return (
     <>
@@ -22,41 +21,18 @@ const Experience = () => {
       <Suspense fallback={<div>Loading assets...</div>}>
         <Physics debug={debug}>
           <RigidBody
-            colliders="cuboid"
+            colliders="ball"
             position={[0, 0, 0]}
-            restitution={0.7}
+            restitution={0}
             scale={0.2}
           >
             <mesh>
-              <boxGeometry />
-              <meshStandardMaterial color="orange" />
+              <sphereGeometry />
+              <meshBasicMaterial color="white" />
             </mesh>
           </RigidBody>
 
-          <RigidBody
-            colliders="trimesh"
-            position={[0, -1.0, 0]}
-            type="fixed"
-            restitution={0.7}
-            scale={1}
-          >
-            <mesh
-              geometry={(model.nodes["outer-glass"] as THREE.Mesh).geometry}
-              position={model.nodes["outer-glass"].position}
-              rotation={model.nodes["outer-glass"].rotation}
-              scale={model.nodes["outer-glass"].scale}
-            >
-              <meshPhysicalMaterial
-                color={new THREE.Color(1, 1, 1)}
-                opacity={0.1}
-                transparent={true}
-                roughness={0.5}
-                metalness={0.5}
-                clearcoat={1}
-                clearcoatRoughness={0.1}
-              />
-            </mesh>
-          </RigidBody>
+          <SnowGlobe />
         </Physics>
       </Suspense>
     </>
