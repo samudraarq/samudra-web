@@ -29,6 +29,15 @@ const SnowGlobe = () => {
           clearcoatRoughness={0.1}
         />
       </mesh>
+
+      <mesh
+        geometry={(model.nodes["wood-base"] as THREE.Mesh).geometry}
+        position={model.nodes["wood-base"].position}
+        rotation={model.nodes["wood-base"].rotation}
+        scale={model.nodes["wood-base"].scale}
+      >
+        <meshStandardMaterial color="#8B4513" />
+      </mesh>
     </RigidBody>
   );
 };

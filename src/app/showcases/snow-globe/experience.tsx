@@ -19,7 +19,12 @@ const Experience = () => {
       <Suspense fallback={null}>
         <Physics debug={debug}>
           <Center>
-            <RigidBody colliders="ball" restitution={0} scale={0.2}>
+            <RigidBody
+              colliders="ball"
+              restitution={0}
+              scale={0.2}
+              position={[0, 2, 0]}
+            >
               <mesh>
                 <sphereGeometry />
                 <meshBasicMaterial color="white" />
