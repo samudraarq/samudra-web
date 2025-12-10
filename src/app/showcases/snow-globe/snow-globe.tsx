@@ -12,6 +12,7 @@ const SnowGlobe = () => {
         type="fixed"
         restitution={0}
         friction={0.8}
+        canSleep={false}
       >
         <mesh
           geometry={(model.nodes["outer-glass"] as THREE.Mesh).geometry}
