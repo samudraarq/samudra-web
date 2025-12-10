@@ -72,7 +72,7 @@ const Snows = () => {
           args={[undefined, undefined, snowCount]}
           count={snowCount}
         >
-          <sphereGeometry />
+          <icosahedronGeometry args={[1, 1]} />
           <meshStandardMaterial color="white" />
         </instancedMesh>
       </InstancedRigidBodies>

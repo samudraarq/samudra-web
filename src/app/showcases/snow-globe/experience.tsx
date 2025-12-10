@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { useControls } from "leva";
 import SnowGlobe from "./snow-globe";
 import Snows from "./snows";
+import { Perf } from "r3f-perf";
 
 const Experience = () => {
   const { debug } = useControls("Snow Globe", {
@@ -12,6 +13,8 @@ const Experience = () => {
 
   return (
     <>
+      <Perf position="top-left" />
+
       <color attach="background" args={["#ffffff"]} />
       <Environment preset="sunset" />
 
