@@ -23,6 +23,7 @@ const Experience = () => {
       <Suspense fallback={null}>
         <Physics debug={debug} gravity={[0, -0.3, 0]}>
           <Snows />
+
           <Center>
             <SnowGlobe />
           </Center>

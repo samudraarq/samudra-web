@@ -42,6 +42,17 @@ const SnowGlobe = () => {
           <meshStandardMaterial color="#8B4513" />
         </mesh>
       </RigidBody>
+
+      <RigidBody type="fixed" colliders="hull" restitution={0} friction={1}>
+        <mesh
+          geometry={(model.nodes["house"] as THREE.Mesh).geometry}
+          position={model.nodes["house"].position}
+          rotation={model.nodes["house"].rotation}
+          scale={model.nodes["house"].scale}
+        >
+          <meshStandardMaterial color="#8B4513" />
+        </mesh>
+      </RigidBody>
     </>
   );
 };

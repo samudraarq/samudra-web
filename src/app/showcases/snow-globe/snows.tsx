@@ -16,7 +16,7 @@ const Snows = () => {
 
   const snowsRigidBodies = useRef<RapierRigidBody[]>(null);
 
-  const snowCount = 1500;
+  const snowCount = 2000;
   const instances: InstancedRigidBodyProps[] = useMemo(() => {
     const instances: InstancedRigidBodyProps[] = [];
 
@@ -42,7 +42,7 @@ const Snows = () => {
       // only apply impulse when position y is less than 0
       if (snow.translation().y < 0) {
         const currentVel = snow.linvel();
-        const targetUpwardVel = 0.002;
+        const targetUpwardVel = 0.002 * (0.5 + Math.random() * 0.5);
 
         // Only apply impulse if current upward velocity is less than target
         if (currentVel.y < targetUpwardVel) {
@@ -72,7 +72,7 @@ const Snows = () => {
           args={[undefined, undefined, snowCount]}
           count={snowCount}
         >
-          <icosahedronGeometry args={[1, 1]} />
+          <icosahedronGeometry args={[0.4, 1]} />
           <meshStandardMaterial color="white" />
         </instancedMesh>
       </InstancedRigidBodies>
