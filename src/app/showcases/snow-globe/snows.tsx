@@ -1,3 +1,4 @@
+import { ThreeEvent } from "@react-three/fiber";
 import {
   InstancedRigidBodies,
   InstancedRigidBodyProps,
@@ -5,21 +6,24 @@ import {
   RapierRigidBody,
 } from "@react-three/rapier";
 import { button, useControls } from "leva";
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
+import * as THREE from "three";
 
 const Snows = () => {
+  const snowsRigidBodies = useRef<RapierRigidBody[]>(null);
+  const buttonRef = useRef<THREE.Mesh>(null);
+
   useControls("Snowflakes", {
     spin: button(() => {
       spinSnows();
     }),
   });
 
-  const snowsRigidBodies = useRef<RapierRigidBody[]>(null);
-
-  const snowCount = 2000;
+  const snowCount = 1500;
   const instances: InstancedRigidBodyProps[] = useMemo(() => {
     const instances: InstancedRigidBodyProps[] = [];
 
+    // only calculate instances after mounted to avoid SSR issues
     for (let i = 0; i < snowCount; i++) {
       instances.push({
         key: "instance_" + i,
@@ -42,7 +46,7 @@ const Snows = () => {
       // only apply impulse when position y is less than 0
       if (snow.translation().y < 0) {
         const currentVel = snow.linvel();
-        const targetUpwardVel = 0.002 * (0.5 + Math.random() * 0.5);
+        const targetUpwardVel = 0.0025 * (0.5 + Math.random() * 0.5);
 
         // Only apply impulse if current upward velocity is less than target
         if (currentVel.y < targetUpwardVel) {
@@ -55,6 +59,24 @@ const Snows = () => {
         }
       }
     });
+  };
+
+  const handlePointerDown = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    // move button down slightly on click
+    if (buttonRef.current) {
+      buttonRef.current.position.z -= 0.1;
+    }
+    // Spin snows on button click
+    spinSnows();
+  };
+
+  const handlePointerUp = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    // move button back to original position on release
+    if (buttonRef.current) {
+      buttonRef.current.position.z += 0.1;
+    }
   };
 
   return (
@@ -76,6 +98,17 @@ const Snows = () => {
           <meshStandardMaterial color="white" />
         </instancedMesh>
       </InstancedRigidBodies>
+
+      {/* Spin button */}
+      <mesh
+        position={[0, -2.5, 2.5]}
+        ref={buttonRef}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
+      >
+        <boxGeometry />
+        <meshStandardMaterial color="red" />
+      </mesh>
     </>
   );
 };
