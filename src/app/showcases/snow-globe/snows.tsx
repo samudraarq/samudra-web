@@ -46,7 +46,7 @@ const Snows = () => {
       // only apply impulse when position y is less than 0
       if (snow.translation().y < 0) {
         const currentVel = snow.linvel();
-        const targetUpwardVel = 0.0025 * (0.5 + Math.random() * 0.5);
+        const targetUpwardVel = 0.001 * (0.5 + Math.random() * 0.5);
 
         // Only apply impulse if current upward velocity is less than target
         if (currentVel.y < targetUpwardVel) {
@@ -65,7 +65,7 @@ const Snows = () => {
     e.stopPropagation();
     // move button down slightly on click
     if (buttonRef.current) {
-      buttonRef.current.position.z -= 0.1;
+      buttonRef.current.position.z -= 0.02;
     }
     // Spin snows on button click
     spinSnows();
@@ -75,7 +75,7 @@ const Snows = () => {
     e.stopPropagation();
     // move button back to original position on release
     if (buttonRef.current) {
-      buttonRef.current.position.z += 0.1;
+      buttonRef.current.position.z += 0.02;
     }
   };
 
@@ -85,7 +85,7 @@ const Snows = () => {
         ref={snowsRigidBodies}
         instances={instances}
         colliders={false}
-        colliderNodes={[<BallCollider args={[0.7]} />]}
+        colliderNodes={[<BallCollider args={[0.5]} />]}
         restitution={0}
         friction={1}
         canSleep={false}
@@ -101,13 +101,15 @@ const Snows = () => {
 
       {/* Spin button */}
       <mesh
-        position={[0, -2.5, 2.5]}
+        position={[0, -2.5, 2]}
         ref={buttonRef}
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
+        scale={0.5}
+        rotation-x={-0.06}
       >
         <boxGeometry />
-        <meshStandardMaterial color="red" />
+        <meshStandardMaterial color="#60BCDB" />
       </mesh>
     </>
   );
