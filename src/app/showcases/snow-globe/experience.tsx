@@ -6,6 +6,7 @@ import SnowGlobe from "./snow-globe";
 import Snows from "./snows";
 import { Perf } from "r3f-perf";
 import Env from "./env";
+import BackgroundText from "./background-text";
 
 const Experience = () => {
   const [mounted, setMounted] = useState(false);
@@ -28,10 +29,14 @@ const Experience = () => {
       <PerformanceMonitor onDecline={() => degrade(true)} />
 
       <Physics debug={debug} gravity={[0, -0.2, 0]}>
-        <Snows />
+        <group position={[1, 0, 0]}>
+          <Snows />
+        </group>
 
         <Center>
-          <SnowGlobe />
+          <group position={[1, 0, 0]}>
+            <SnowGlobe />
+          </group>
 
           <ContactShadows
             frames={1}
@@ -42,6 +47,9 @@ const Experience = () => {
           />
         </Center>
       </Physics>
+
+      <BackgroundText />
+
       <Env perfSucks={perfSucks} />
     </>
   );
