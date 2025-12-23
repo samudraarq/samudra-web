@@ -56,5 +56,8 @@ body {
 
   .canvas-fullscreen {
     @apply fixed top-0 left-0 w-full h-full;
+    overflow: hidden;
+    touch-action: none;
+    overscroll-behavior: none;
   }
 }
