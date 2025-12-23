@@ -1,5 +1,6 @@
-import { useGLTF } from "@react-three/drei";
+import { MeshTransmissionMaterial, useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
+import { useControls } from "leva";
 import * as THREE from "three";
 import { GLTF } from "three/examples/jsm/Addons.js";
 
@@ -21,6 +22,54 @@ type GLTFResult = GLTF & {
 };
 
 const SnowGlobe = (props: any) => {
+  const {
+    backside,
+    clearcoat,
+    clearcoatRoughness,
+    thickness,
+    chromaticAberration,
+    anisotropicBlur,
+    envMapIntensity,
+  } = useControls("Snow Globe Material", {
+    backside: true,
+    clearcoat: {
+      value: 0.5,
+      min: 0,
+      max: 1,
+      step: 0.01,
+    },
+    clearcoatRoughness: {
+      value: 1,
+      min: 0,
+      max: 1,
+      step: 0.01,
+    },
+    thickness: {
+      value: 0.05,
+      min: 0,
+      max: 0.2,
+      step: 0.01,
+    },
+    chromaticAberration: {
+      value: 0.05,
+      min: 0,
+      max: 0.2,
+      step: 0.01,
+    },
+    anisotropicBlur: {
+      value: 1,
+      min: 0,
+      max: 5,
+      step: 0.01,
+    },
+    envMapIntensity: {
+      value: 1.5,
+      min: 0,
+      max: 5,
+      step: 0.01,
+    },
+  });
+
   const { nodes, materials } = useGLTF(
     "/models/snow-globe.glb",
   ) as unknown as GLTFResult;
@@ -34,13 +83,18 @@ const SnowGlobe = (props: any) => {
         friction={0.8}
         canSleep={false}
       >
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes["glass-ball"].geometry}
-          material={materials.glass}
-          position={[0, 4.277, 0]}
-        />
+        <mesh castShadow receiveShadow geometry={nodes["glass-ball"].geometry}>
+          <MeshTransmissionMaterial
+            backside={backside}
+            backsideThickness={thickness}
+            thickness={thickness}
+            chromaticAberration={chromaticAberration}
+            anisotropicBlur={anisotropicBlur}
+            clearcoat={clearcoat}
+            clearcoatRoughness={clearcoatRoughness}
+            envMapIntensity={envMapIntensity}
+          />
+        </mesh>
       </RigidBody>
 
       <RigidBody type="fixed" restitution={0} friction={1}>
@@ -49,8 +103,6 @@ const SnowGlobe = (props: any) => {
           receiveShadow
           geometry={nodes.base.geometry}
           material={materials.base}
-          position={[0, 0.005, 0]}
-          rotation={[0, Math.PI / 4, 0]}
         />
       </RigidBody>
 
@@ -59,7 +111,6 @@ const SnowGlobe = (props: any) => {
         receiveShadow
         geometry={nodes["base-snow"].geometry}
         material={materials.snow}
-        position={[0, 2.447, 0]}
       />
 
       <mesh
@@ -67,7 +118,6 @@ const SnowGlobe = (props: any) => {
         receiveShadow
         geometry={nodes["tree-trunk"].geometry}
         material={materials["tree-trunk"]}
-        position={[0, 3.112, 0]}
       />
 
       <RigidBody type="fixed" colliders="hull" restitution={0} friction={1}>
@@ -76,7 +126,6 @@ const SnowGlobe = (props: any) => {
           receiveShadow
           geometry={nodes["tree-leaves"].geometry}
           material={materials["tree-leaves"]}
-          position={[0, 3.602, 0]}
         />
       </RigidBody>
     </group>
