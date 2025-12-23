@@ -23,6 +23,7 @@ function Env({ perfSucks = false }: EnvProps) {
       state.camera.lookAt(0, 0, 0);
     }
   });
+
   return (
     <Environment
       frames={perfSucks ? 1 : Infinity}

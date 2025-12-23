@@ -19,7 +19,7 @@ const Snows = () => {
     }),
   });
 
-  const snowCount = 1500;
+  const snowCount = 500;
   const instances: InstancedRigidBodyProps[] = useMemo(() => {
     const instances: InstancedRigidBodyProps[] = [];
 
@@ -89,6 +89,7 @@ const Snows = () => {
         restitution={0}
         friction={1}
         canSleep={false}
+        ccd={false}
       >
         <instancedMesh
           args={[undefined, undefined, snowCount]}
