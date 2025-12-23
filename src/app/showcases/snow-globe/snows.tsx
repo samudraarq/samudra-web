@@ -28,9 +28,9 @@ const Snows = () => {
       instances.push({
         key: "instance_" + i,
         position: [
-          (Math.random() - 0.5) * 3.2,
+          Math.sin(i) * 4.5 * (Math.random() - 0.5),
           1 + Math.random() * 1.5,
-          (Math.random() - 0.5) * 3.2,
+          Math.cos(i) * 4.5 * (Math.random() - 0.5),
         ],
         scale: 0.08 + Math.random() * 0.02,
       });

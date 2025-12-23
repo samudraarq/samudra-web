@@ -1,5 +1,6 @@
 "use client";
 
+import { Leva } from "leva";
 import dynamic from "next/dynamic";
 
 const Canvas = dynamic(
@@ -21,9 +22,11 @@ const Experience = dynamic(() => import("./experience"), {
 const Page = () => {
   return (
     <div id="canvas-container" className="canvas-fullscreen">
-      <Canvas>
+      <Canvas shadows camera={{ position: [3, 1, 10] }}>
         <Experience />
       </Canvas>
+
+      <Leva collapsed={true} />
     </div>
   );
 };

@@ -83,7 +83,7 @@ const SnowGlobe = (props: any) => {
         friction={0.8}
         canSleep={false}
       >
-        <mesh castShadow receiveShadow geometry={nodes["glass-ball"].geometry}>
+        <mesh castShadow geometry={nodes["glass-ball"].geometry}>
           <MeshTransmissionMaterial
             backside={backside}
             backsideThickness={thickness}
@@ -100,7 +100,6 @@ const SnowGlobe = (props: any) => {
       <RigidBody type="fixed" restitution={0} friction={1}>
         <mesh
           castShadow
-          receiveShadow
           geometry={nodes.base.geometry}
           material={materials.base}
         />
@@ -108,14 +107,12 @@ const SnowGlobe = (props: any) => {
 
       <mesh
         castShadow
-        receiveShadow
         geometry={nodes["base-snow"].geometry}
         material={materials.snow}
       />
 
       <mesh
         castShadow
-        receiveShadow
         geometry={nodes["tree-trunk"].geometry}
         material={materials["tree-trunk"]}
       />
@@ -123,7 +120,6 @@ const SnowGlobe = (props: any) => {
       <RigidBody type="fixed" colliders="hull" restitution={0} friction={1}>
         <mesh
           castShadow
-          receiveShadow
           geometry={nodes["tree-leaves"].geometry}
           material={materials["tree-leaves"]}
         />
