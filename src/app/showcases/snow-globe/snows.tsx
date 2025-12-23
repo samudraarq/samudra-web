@@ -110,7 +110,7 @@ const Snows = () => {
         rotation-x={-0.06}
       >
         <boxGeometry />
-        <meshStandardMaterial color="#60BCDB" />
+        <meshStandardMaterial color="#996346" />
       </mesh>
     </>
   );
