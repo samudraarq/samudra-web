@@ -1,12 +1,32 @@
 import { useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import * as THREE from "three";
+import { GLTF } from "three/examples/jsm/Addons.js";
 
-const SnowGlobe = () => {
-  const model = useGLTF("/models/snow-globe.glb");
+type GLTFResult = GLTF & {
+  nodes: {
+    base: THREE.Mesh;
+    ["base-snow"]: THREE.Mesh;
+    ["glass-ball"]: THREE.Mesh;
+    ["tree-trunk"]: THREE.Mesh;
+    ["tree-leaves"]: THREE.Mesh;
+  };
+  materials: {
+    base: THREE.MeshStandardMaterial;
+    snow: THREE.MeshStandardMaterial;
+    glass: THREE.MeshStandardMaterial;
+    ["tree-trunk"]: THREE.MeshStandardMaterial;
+    ["tree-leaves"]: THREE.MeshStandardMaterial;
+  };
+};
+
+const SnowGlobe = (props: any) => {
+  const { nodes, materials } = useGLTF(
+    "/models/snow-globe.glb",
+  ) as unknown as GLTFResult;
 
   return (
-    <>
+    <group {...props} dispose={null}>
       <RigidBody
         colliders="trimesh"
         type="fixed"
@@ -15,62 +35,51 @@ const SnowGlobe = () => {
         canSleep={false}
       >
         <mesh
-          geometry={(model.nodes["glass-ball"] as THREE.Mesh).geometry}
-          position={model.nodes["glass-ball"].position}
-          rotation={model.nodes["glass-ball"].rotation}
-          scale={model.nodes["glass-ball"].scale}
-        >
-          <meshPhysicalMaterial
-            color={new THREE.Color(1, 1, 1)}
-            opacity={0.1}
-            transparent={true}
-            roughness={0.5}
-            metalness={0.5}
-            clearcoat={1}
-            clearcoatRoughness={0.1}
-          />
-        </mesh>
+          castShadow
+          receiveShadow
+          geometry={nodes["glass-ball"].geometry}
+          material={materials.glass}
+          position={[0, 4.277, 0]}
+        />
       </RigidBody>
 
       <RigidBody type="fixed" restitution={0} friction={1}>
         <mesh
-          geometry={(model.nodes["base"] as THREE.Mesh).geometry}
-          material={(model.nodes["base"] as THREE.Mesh).material}
-          position={model.nodes["base"].position}
-          rotation={model.nodes["base"].rotation}
-          scale={model.nodes["base"].scale}
-          onClick={(e) => e.stopPropagation()}
-          onPointerDown={(e) => e.stopPropagation()}
-          onPointerUp={(e) => e.stopPropagation()}
+          castShadow
+          receiveShadow
+          geometry={nodes.base.geometry}
+          material={materials.base}
+          position={[0, 0.005, 0]}
+          rotation={[0, Math.PI / 4, 0]}
         />
       </RigidBody>
 
       <mesh
-        geometry={(model.nodes["base-snow"] as THREE.Mesh).geometry}
-        material={(model.nodes["base-snow"] as THREE.Mesh).material}
-        position={model.nodes["base-snow"].position}
-        rotation={model.nodes["base-snow"].rotation}
-        scale={model.nodes["base-snow"].scale}
+        castShadow
+        receiveShadow
+        geometry={nodes["base-snow"].geometry}
+        material={materials.snow}
+        position={[0, 2.447, 0]}
       />
 
       <mesh
-        geometry={(model.nodes["tree-trunk"] as THREE.Mesh).geometry}
-        material={(model.nodes["tree-trunk"] as THREE.Mesh).material}
-        position={model.nodes["tree-trunk"].position}
-        rotation={model.nodes["tree-trunk"].rotation}
-        scale={model.nodes["tree-trunk"].scale}
+        castShadow
+        receiveShadow
+        geometry={nodes["tree-trunk"].geometry}
+        material={materials["tree-trunk"]}
+        position={[0, 3.112, 0]}
       />
 
       <RigidBody type="fixed" colliders="hull" restitution={0} friction={1}>
         <mesh
-          geometry={(model.nodes["tree-leaf"] as THREE.Mesh).geometry}
-          material={(model.nodes["tree-leaf"] as THREE.Mesh).material}
-          position={model.nodes["tree-leaf"].position}
-          rotation={model.nodes["tree-leaf"].rotation}
-          scale={model.nodes["tree-leaf"].scale}
+          castShadow
+          receiveShadow
+          geometry={nodes["tree-leaves"].geometry}
+          material={materials["tree-leaves"]}
+          position={[0, 3.602, 0]}
         />
       </RigidBody>
-    </>
+    </group>
   );
 };
 export default SnowGlobe;
