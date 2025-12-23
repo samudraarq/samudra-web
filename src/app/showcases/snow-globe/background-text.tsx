@@ -11,7 +11,7 @@ const BackgroundText = () => {
       textAlign="center"
       color={"#000000"}
     >
-      MERRY CHRISTMAS
+      FROZEN WONDER
     </Text>
   );
 };

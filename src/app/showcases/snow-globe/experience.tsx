@@ -24,6 +24,8 @@ const Experience = () => {
 
   return (
     <>
+      <color attach="background" args={["#fce065"]} />
+
       <Perf position="top-left" />
 
       <PerformanceMonitor onDecline={() => degrade(true)} />

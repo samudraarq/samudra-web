@@ -29,26 +29,37 @@ function Env({ perfSucks = false }: EnvProps) {
       frames={perfSucks ? 1 : Infinity}
       preset="city"
       resolution={256}
+      backgroundIntensity={1.2}
       background
       blur={0.8}
     >
       <Lightformer
-        intensity={2}
+        intensity={1}
         rotation-x={Math.PI / 2}
-        position={[0, 5, -9]}
+        position={[0, 6, -9]}
         scale={[10, 10, 1]}
+        color="red"
       />
       <Lightformer
-        intensity={0.5}
+        intensity={2}
         rotation-y={Math.PI / 2}
-        position={[-5, 1, -1]}
+        position={[-4, 1, -1]}
         scale={[50, 2, 1]}
+        color="green"
       />
       <Lightformer
-        intensity={0.5}
+        intensity={1}
         rotation-y={-Math.PI / 2}
-        position={[10, 1, 0]}
+        position={[2, 1, 0]}
         scale={[50, 2, 1]}
+        color="#ffe369"
+      />
+      <Lightformer
+        intensity={3}
+        rotation-y={-Math.PI / 2}
+        position={[2, 2, 3]}
+        scale={[50, 2, 1]}
+        color="white"
       />
     </Environment>
   );
