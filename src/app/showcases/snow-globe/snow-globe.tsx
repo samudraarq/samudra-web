@@ -11,6 +11,16 @@ type GLTFResult = GLTF & {
     ["glass-ball"]: THREE.Mesh;
     ["tree-trunk"]: THREE.Mesh;
     ["tree-leaves"]: THREE.Mesh;
+    Cube003: THREE.Mesh;
+    Cube003_1: THREE.Mesh;
+    Cube005: THREE.Mesh;
+    Cube005_1: THREE.Mesh;
+    Cube006: THREE.Mesh;
+    Cube006_1: THREE.Mesh;
+    Cube007: THREE.Mesh;
+    Cube007_1: THREE.Mesh;
+    Cube008: THREE.Mesh;
+    Cube008_1: THREE.Mesh;
   };
   materials: {
     base: THREE.MeshStandardMaterial;
@@ -18,6 +28,12 @@ type GLTFResult = GLTF & {
     glass: THREE.MeshStandardMaterial;
     ["tree-trunk"]: THREE.MeshStandardMaterial;
     ["tree-leaves"]: THREE.MeshStandardMaterial;
+    ["gift-green"]: THREE.MeshStandardMaterial;
+    ["gift-ribbon"]: THREE.MeshStandardMaterial;
+    ["gift-blue"]: THREE.MeshStandardMaterial;
+    ["gift-purple"]: THREE.MeshStandardMaterial;
+    ["gift-lightblue"]: THREE.MeshStandardMaterial;
+    ["gift-yellow"]: THREE.MeshStandardMaterial;
   };
 };
 
@@ -113,6 +129,61 @@ const SnowGlobe = (props: any) => {
           material={materials["tree-leaves"]}
         />
       </RigidBody>
+
+      <RigidBody type="fixed" restitution={0} friction={1}>
+        <mesh
+          geometry={nodes.Cube003.geometry}
+          material={materials["gift-green"]}
+        />
+      </RigidBody>
+      <mesh
+        geometry={nodes.Cube003_1.geometry}
+        material={materials["gift-ribbon"]}
+      />
+
+      <RigidBody type="fixed" restitution={0} friction={1}>
+        <mesh
+          geometry={nodes.Cube005.geometry}
+          material={materials["gift-blue"]}
+        />
+      </RigidBody>
+      <mesh
+        geometry={nodes.Cube005_1.geometry}
+        material={materials["gift-ribbon"]}
+      />
+
+      <RigidBody type="fixed" restitution={0} friction={1}>
+        <mesh
+          geometry={nodes.Cube006.geometry}
+          material={materials["gift-purple"]}
+        />
+      </RigidBody>
+      <mesh
+        geometry={nodes.Cube006_1.geometry}
+        material={materials["gift-ribbon"]}
+      />
+
+      <RigidBody type="fixed" restitution={0} friction={1}>
+        <mesh
+          geometry={nodes.Cube007.geometry}
+          material={materials["gift-lightblue"]}
+        />
+      </RigidBody>
+      <mesh
+        geometry={nodes.Cube007_1.geometry}
+        material={materials["gift-ribbon"]}
+      />
+
+      <RigidBody type="fixed" restitution={0} friction={1}>
+        <mesh
+          geometry={nodes.Cube008.geometry}
+          material={materials["gift-yellow"]}
+        />
+      </RigidBody>
+      <mesh
+        geometry={nodes.Cube008_1.geometry}
+        material={materials["gift-ribbon"]}
+      />
     </group>
   );
 };
