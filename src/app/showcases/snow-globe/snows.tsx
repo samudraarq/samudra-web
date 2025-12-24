@@ -1,9 +1,10 @@
-import { ThreeEvent } from "@react-three/fiber";
+import { ThreeEvent, useFrame } from "@react-three/fiber";
 import {
   InstancedRigidBodies,
   InstancedRigidBodyProps,
   BallCollider,
   RapierRigidBody,
+  RigidBody,
 } from "@react-three/rapier";
 import { button, useControls } from "leva";
 import { useMemo, useRef } from "react";
@@ -19,7 +20,7 @@ const Snows = () => {
     }),
   });
 
-  const snowCount = 500;
+  const snowCount = 300;
   const instances: InstancedRigidBodyProps[] = useMemo(() => {
     const instances: InstancedRigidBodyProps[] = [];
 
@@ -45,8 +46,12 @@ const Snows = () => {
     snowsRigidBodies.current.forEach((snow) => {
       // only apply impulse when position y is less than 0
       if (snow.translation().y < 0) {
+        // wake up the snow if sleeping
+        snow.wakeUp();
+
+        // get current upward velocity
         const currentVel = snow.linvel();
-        const targetUpwardVel = 0.001 * (0.5 + Math.random() * 0.5);
+        const targetUpwardVel = 0.002 * (0.5 + Math.random() * 0.5);
 
         // Only apply impulse if current upward velocity is less than target
         if (currentVel.y < targetUpwardVel) {
@@ -60,6 +65,33 @@ const Snows = () => {
       }
     });
   };
+
+  useFrame(() => {
+    if (!snowsRigidBodies.current) return;
+
+    snowsRigidBodies.current.forEach((snow) => {
+      // for each snow, if position y > 5, reset to bottom
+      const pos = snow.translation();
+      if (pos.y > 3.5) {
+        snow.setTranslation(
+          {
+            x: (Math.random() - 0.5) * 2 + 1,
+            y: -2 + Math.random() * 1,
+            z: (Math.random() - 0.5) * 2,
+          },
+          true,
+        );
+        snow.setLinvel({ x: 0, y: 0, z: 0 }, true);
+      }
+
+      // if position y < -1.25, sleep the snow if not already sleeping and don't have velocity
+      if (pos.y < -1.25) {
+        if (!snow.isSleeping() && snow.linvel().y <= 0.01) {
+          snow.sleep();
+        }
+      }
+    });
+  });
 
   const handlePointerDown = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();
@@ -85,7 +117,7 @@ const Snows = () => {
         ref={snowsRigidBodies}
         instances={instances}
         colliders={false}
-        colliderNodes={[<BallCollider args={[0.5]} />]}
+        colliderNodes={[<BallCollider args={[0.6]} />]}
         restitution={0}
         friction={1}
         canSleep={false}
@@ -95,7 +127,7 @@ const Snows = () => {
           args={[undefined, undefined, snowCount]}
           count={snowCount}
         >
-          <icosahedronGeometry args={[0.4, 1]} />
+          <icosahedronGeometry args={[0.6, 1]} />
           <meshStandardMaterial color="white" />
         </instancedMesh>
       </InstancedRigidBodies>

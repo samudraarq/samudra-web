@@ -26,7 +26,7 @@ const Page = () => {
         <Experience />
       </Canvas>
 
-      <Leva collapsed={true} hidden={true} />
+      <Leva collapsed={true} hidden={false} />
     </div>
   );
 };

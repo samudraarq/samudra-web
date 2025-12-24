@@ -1,4 +1,4 @@
-import { Center, ContactShadows } from "@react-three/drei";
+import { Center, ContactShadows, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
 import { useEffect, useState } from "react";
 import { useControls } from "leva";
@@ -6,10 +6,10 @@ import SnowGlobe from "./snow-globe";
 import Snows from "./snows";
 import Env from "./env";
 import BackgroundText from "./background-text";
+import { Perf } from "r3f-perf";
 
 const Experience = () => {
   const [mounted, setMounted] = useState(false);
-  // const [perfSucks, degrade] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -25,9 +25,9 @@ const Experience = () => {
     <>
       <color attach="background" args={["#ffffff"]} />
 
-      {/* <Perf position="top-left" /> */}
+      <Perf position="top-left" />
 
-      {/* <PerformanceMonitor onDecline={() => degrade(true)} /> */}
+      <OrbitControls maxPolarAngle={Math.PI / 2 + 0.3} />
 
       <Physics debug={debug} gravity={[0, -0.2, 0]}>
         <group position={[1, 0, 0]}>
