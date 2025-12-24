@@ -81,9 +81,8 @@ const SnowGlobe = (props: any) => {
         type="fixed"
         restitution={0}
         friction={0.8}
-        canSleep={false}
       >
-        <mesh castShadow geometry={nodes["glass-ball"].geometry}>
+        <mesh geometry={nodes["glass-ball"].geometry}>
           <MeshTransmissionMaterial
             backside={backside}
             backsideThickness={thickness}
@@ -98,28 +97,18 @@ const SnowGlobe = (props: any) => {
       </RigidBody>
 
       <RigidBody type="fixed" restitution={0} friction={1}>
-        <mesh
-          castShadow
-          geometry={nodes.base.geometry}
-          material={materials.base}
-        />
+        <mesh geometry={nodes.base.geometry} material={materials.base} />
       </RigidBody>
 
-      <mesh
-        castShadow
-        geometry={nodes["base-snow"].geometry}
-        material={materials.snow}
-      />
+      <mesh geometry={nodes["base-snow"].geometry} material={materials.snow} />
 
       <mesh
-        castShadow
         geometry={nodes["tree-trunk"].geometry}
         material={materials["tree-trunk"]}
       />
 
       <RigidBody type="fixed" colliders="hull" restitution={0} friction={1}>
         <mesh
-          castShadow
           geometry={nodes["tree-leaves"].geometry}
           material={materials["tree-leaves"]}
         />

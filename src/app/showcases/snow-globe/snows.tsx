@@ -4,7 +4,6 @@ import {
   InstancedRigidBodyProps,
   BallCollider,
   RapierRigidBody,
-  RigidBody,
 } from "@react-three/rapier";
 import { button, useControls } from "leva";
 import { useMemo, useRef } from "react";

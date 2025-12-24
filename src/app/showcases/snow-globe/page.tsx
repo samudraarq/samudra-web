@@ -22,7 +22,7 @@ const Experience = dynamic(() => import("./experience"), {
 const Page = () => {
   return (
     <div id="canvas-container" className="canvas-fullscreen">
-      <Canvas shadows camera={{ position: [3, 1, 10] }}>
+      <Canvas camera={{ position: [3, 1, 10] }}>
         <Experience />
       </Canvas>
 
