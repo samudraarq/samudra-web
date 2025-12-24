@@ -6,7 +6,7 @@ import SnowGlobe from "./snow-globe";
 import Snows from "./snows";
 import Env from "./env";
 import BackgroundText from "./background-text";
-import { Perf } from "r3f-perf";
+// import { Perf } from "r3f-perf";
 
 const Experience = () => {
   const [mounted, setMounted] = useState(false);
@@ -25,7 +25,7 @@ const Experience = () => {
     <>
       <color attach="background" args={["#ffffff"]} />
 
-      <Perf position="top-left" />
+      {/* <Perf position="top-left" /> */}
 
       <OrbitControls maxPolarAngle={Math.PI / 2 + 0.3} />
 
