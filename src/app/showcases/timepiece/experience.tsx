@@ -2,13 +2,16 @@ import { OrbitControls, shaderMaterial } from "@react-three/drei";
 import * as THREE from "three";
 import fragmentShader from "./shaders/fragment.glsl";
 import vertexShader from "./shaders/vertex.glsl";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { extend, useFrame } from "@react-three/fiber";
+
+const glowSrc = "/images/glow.png";
 
 // Shader Material - Particles
 const ParticlesMaterial = shaderMaterial(
   {
     uResolution: new THREE.Vector2(),
+    uDisplacementTexture: null,
   },
   vertexShader,
   fragmentShader,
@@ -17,14 +20,51 @@ const ParticlesMaterial = shaderMaterial(
 type ParticlesMaterialType = THREE.ShaderMaterial & {
   uResolution: THREE.Vector2;
   // uPictureTexture: THREE.Texture | null;
-  // uDisplacementTexture: THREE.Texture | null;
+  uDisplacementTexture: THREE.Texture | null;
 };
 
 const PartMaterial = extend(ParticlesMaterial);
 
-const Experience = () => {
+// Experience Component
+type Props = {
+  canvasRef: React.RefObject<HTMLCanvasElement>;
+};
+
+const Experience = ({ canvasRef }: Props) => {
   const particlesMaterialRef = useRef<ParticlesMaterialType>(null!);
+  const interactivePlaneRef = useRef<THREE.Mesh>(null!);
   const resolutionRef = useRef(new THREE.Vector2());
+  const canvasContextRef = useRef<CanvasRenderingContext2D | null>(null);
+  const imageRef = useRef<HTMLImageElement | null>(null);
+  const raycasterRef = useRef(new THREE.Raycaster());
+  const canvasCursorPrevious = useRef(new THREE.Vector2(9999, 9999));
+  const canvasCursorCurrent = useRef(new THREE.Vector2(9999, 9999));
+  const canvasTextureRef = useRef<THREE.CanvasTexture | null>(null);
+
+  useEffect(() => {
+    // 2D Canvas - Initialize canvas
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d")!;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    canvasContextRef.current = context;
+
+    // 2D Canvas - Initialize Glow Image
+    const image = new Image();
+    image.src = glowSrc;
+    image.onload = () => {
+      imageRef.current = image;
+    };
+
+    // Canvas Texture
+    const canvasTexture = new THREE.CanvasTexture(canvas);
+    canvasTextureRef.current = canvasTexture;
+
+    // Particles - Set texture once
+    if (particlesMaterialRef.current) {
+      // particlesMaterialRef.current.uPictureTexture = texture;
+      particlesMaterialRef.current.uDisplacementTexture = canvasTexture;
+    }
+  }, [canvasRef]);
 
   useFrame((state) => {
     // Particles - Update resolution every frame, in case of window resize
@@ -33,6 +73,62 @@ const Experience = () => {
       state.size.height * state.viewport.dpr,
     );
     particlesMaterialRef.current.uResolution = resolutionRef.current;
+
+    // Raycaster update
+    const raycaster = raycasterRef.current;
+    raycaster.setFromCamera(state.pointer, state.camera);
+
+    // Interactive Plane - Check intersections
+    const intersections = raycaster.intersectObject(
+      interactivePlaneRef.current,
+    );
+
+    // If intersecting, draw glow on 2D canvas
+    if (intersections.length && imageRef.current && canvasContextRef.current) {
+      const uv = intersections[0].uv;
+
+      if (uv) {
+        // Speed Alpha
+        canvasCursorCurrent.current.set(uv.x, uv.y);
+        const cursorDistance = canvasCursorPrevious.current.distanceTo(
+          canvasCursorCurrent.current,
+        );
+        canvasCursorPrevious.current.copy(canvasCursorCurrent.current);
+        const alpha = Math.min(cursorDistance * 20, 1);
+
+        // 2D Canvas - Draw glow on canvas
+        const x = uv.x * canvasRef.current.width;
+        const y = (1 - uv.y) * canvasRef.current.height;
+        const glowSize = canvasRef.current.width * 0.25;
+
+        canvasContextRef.current.globalCompositeOperation = "lighten";
+        canvasContextRef.current.globalAlpha = alpha;
+        canvasContextRef.current.drawImage(
+          imageRef.current,
+          x - glowSize / 2,
+          y - glowSize / 2,
+          glowSize,
+          glowSize,
+        );
+      }
+    }
+
+    if (canvasContextRef.current) {
+      // 2D Canvas - Fade out effect
+      canvasContextRef.current.globalCompositeOperation = "source-over";
+      canvasContextRef.current.globalAlpha = 0.02;
+      canvasContextRef.current.fillRect(
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height,
+      );
+    }
+
+    // Update Canvas Texture
+    if (canvasTextureRef.current) {
+      canvasTextureRef.current.needsUpdate = true;
+    }
   });
   return (
     <>
@@ -48,6 +144,12 @@ const Experience = () => {
           ref={particlesMaterialRef}
         />
       </points>
+
+      {/* Interactive Plane, to detect cursor intersections, then draw glow on 2D canvas */}
+      <mesh ref={interactivePlaneRef} visible={false}>
+        <planeGeometry args={[10, 10]} />
+        <meshBasicMaterial color="red" side={THREE.DoubleSide} />
+      </mesh>
     </>
   );
 };
