@@ -31,6 +31,7 @@ type Props = {
 };
 
 const Experience = ({ canvasRef }: Props) => {
+  const particlesGeometryRef = useRef<THREE.BufferGeometry>(null!);
   const particlesMaterialRef = useRef<ParticlesMaterialType>(null!);
   const interactivePlaneRef = useRef<THREE.Mesh>(null!);
   const resolutionRef = useRef(new THREE.Vector2());
@@ -64,6 +65,16 @@ const Experience = ({ canvasRef }: Props) => {
       // particlesMaterialRef.current.uPictureTexture = texture;
       particlesMaterialRef.current.uDisplacementTexture = canvasTexture;
     }
+
+    // Particles - Optimization
+    particlesGeometryRef.current.setIndex(null);
+    particlesGeometryRef.current.deleteAttribute("normal");
+
+    return () => {
+      // Cleanup
+      canvasTexture.dispose();
+      // texture.dispose();
+    };
   }, [canvasRef]);
 
   useFrame((state) => {
@@ -138,7 +149,7 @@ const Experience = ({ canvasRef }: Props) => {
 
       {/* Particles Plane */}
       <points>
-        <planeGeometry args={[10, 10, 128, 128]} />
+        <planeGeometry args={[10, 10, 128, 128]} ref={particlesGeometryRef} />
         <PartMaterial
           key={vertexShader + fragmentShader}
           ref={particlesMaterialRef}
