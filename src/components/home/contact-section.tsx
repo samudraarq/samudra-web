@@ -6,7 +6,7 @@ const ContactSection = () => {
       <h2>Say Hello</h2>
       <p className="mt-4 mb-8">
         Have an idea or need help building your next product? I&apos;d love to
-        collaborate—whether it&apos;s launching something new or improving what
+        collaborate, whether it&apos;s launching something new or improving what
         you already have.
       </p>
 
