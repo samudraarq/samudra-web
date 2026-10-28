@@ -7,14 +7,14 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  {
-    id: "nihonpal",
-    title: "NihonPal",
-    url: "https://nihonpal.com",
-    description:
-      "A language learning app that helps users practice Japanese through conversations with AI characters. Built using Next.js (App Router), Supabase, OpenAI API, and Tailwind CSS.",
-    technologies: ["Next.js", "Supabase", "OpenAI API", "Tailwind CSS"],
-  },
+  // {
+  //   id: "nihonpal",
+  //   title: "NihonPal",
+  //   url: "https://nihonpal.com",
+  //   description:
+  //     "A language learning app that helps users practice Japanese through conversations with AI characters. Built using Next.js (App Router), Supabase, OpenAI API, and Tailwind CSS.",
+  //   technologies: ["Next.js", "Supabase", "OpenAI API", "Tailwind CSS"],
+  // },
   {
     id: "christopher-landing",
     title: "Christopher Landing Page",
