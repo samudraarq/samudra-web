@@ -8,7 +8,7 @@ const ContactSection = () => {
 
         <p className="mt-4 text-base leading-6.5 text-slate-500 md:mt-5">
           The best way to reach me is by email. You can also find my background
-          on LinkedIn and in my resume.
+          on LinkedIn.
         </p>
 
         <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
@@ -27,14 +27,6 @@ const ContactSection = () => {
               className="hover:underline"
             >
               LinkedIn ↗
-            </a>
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:underline"
-            >
-              Resume ↗
             </a>
           </div>
         </div>
