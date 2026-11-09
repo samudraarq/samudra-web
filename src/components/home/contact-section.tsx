@@ -6,7 +6,7 @@ const ContactSection = () => {
           Get in touch
         </h2>
 
-        <p className="mt-4 text-base leading-[26px] text-slate-500 md:mt-5">
+        <p className="mt-4 text-base leading-6.5 text-slate-500 md:mt-5">
           The best way to reach me is by email. You can also find my background
           on LinkedIn and in my resume.
         </p>

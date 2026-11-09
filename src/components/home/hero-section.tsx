@@ -10,8 +10,8 @@ const HeroSection = () => {
         Building web and mobile products from first screen to store release.
       </h1>
 
-      <p className="mt-5 text-base leading-[26px] text-slate-500 md:mt-6 md:text-lg md:leading-[30px]">
-        I&apos;m Samudra, a software engineer with 5+ years in React, React
+      <p className="mt-5 text-base leading-6.5 text-slate-500 md:mt-6">
+        I&apos;m Samudra, a software engineer with 6 years in React, React
         Native, and Next.js. I own features end to end, and I&apos;m now growing
         into backend and AI-powered features.
       </p>
