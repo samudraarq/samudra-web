@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { Montserrat, Open_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/nav/navbar";
+import Footer from "@/components/layout/footer";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-});
-
-const openSans = Open_Sans({
-  variable: "--font-open-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -28,10 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.variable} ${openSans.variable} antialiased`}
+        className={`${inter.variable} bg-white font-sans text-slate-900 antialiased`}
       >
         <Navbar />
-        {children}
+        <main>{children}</main>
+        <Footer />
         <Analytics />
         <SpeedInsights />
       </body>

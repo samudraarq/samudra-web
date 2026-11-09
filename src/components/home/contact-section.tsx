@@ -1,78 +1,45 @@
-import Image from "next/image";
-
 const ContactSection = () => {
   return (
-    <div className="custom-container pt-24 pb-24">
-      <h2>Say Hello</h2>
-      <p className="mt-4 mb-8">
-        Have an idea or need help building your next product? I&apos;d love to
-        collaborate, whether it&apos;s launching something new or improving what
-        you already have.
-      </p>
+    <section id="contact" className="custom-container">
+      <div className="border-t border-slate-200 py-10 md:py-14">
+        <h2 className="text-2xl leading-8 font-semibold tracking-[-0.01em] text-slate-900">
+          Get in touch
+        </h2>
 
-      <div className="flex gap-4">
-        <a
-          href="https://github.com/samudraarq"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-3 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors flex items-center justify-center"
-          title="GitHub"
-        >
-          <Image
-            src="/icons/github-mark.svg"
-            alt="GitHub"
-            width={24}
-            height={24}
-            className="object-contain"
-          />
-        </a>
-        <a
-          href="https://youtube.com/@samudrafaris?si=_zRCjjBaiv9nHU2k"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-3 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors flex items-center justify-center"
-          title="YouTube"
-        >
-          <Image
-            src="/icons/youtube_social_icon_dark.png"
-            alt="YouTube"
-            width={24}
-            height={24}
-            className="object-contain"
-          />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/samudra-faris-arqam/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-3 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors flex items-center justify-center"
-          title="LinkedIn"
-        >
-          <Image
-            src="/icons/InBug-Black.png"
-            alt="LinkedIn"
-            width={24}
-            height={24}
-            className="object-contain"
-          />
-        </a>
-        <a
-          href="https://www.instagram.com/samudra_arq/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-3 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors flex items-center justify-center"
-          title="Instagram"
-        >
-          <Image
-            src="/icons/Instagram_Glyph_Black.svg"
-            alt="Instagram"
-            width={24}
-            height={24}
-            className="object-contain"
-          />
-        </a>
+        <p className="mt-4 text-base leading-[26px] text-slate-500 md:mt-5">
+          The best way to reach me is by email. You can also find my background
+          on LinkedIn and in my resume.
+        </p>
+
+        <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
+          <a
+            href="mailto:samudrafaris@gmail.com"
+            className="rounded-lg bg-slate-800 px-5 py-3 text-center text-sm font-medium text-white transition-colors hover:bg-slate-700"
+          >
+            samudrafaris@gmail.com
+          </a>
+
+          <div className="flex gap-5 text-sm font-medium text-slate-800">
+            <a
+              href="https://www.linkedin.com/in/samudra-faris-arqam/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              LinkedIn ↗
+            </a>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              Resume ↗
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
